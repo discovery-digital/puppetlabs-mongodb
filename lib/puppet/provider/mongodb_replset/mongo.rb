@@ -162,6 +162,7 @@ Puppet::Type.type(:mongodb_replset).provide(:mongo, :parent => Puppet::Provider:
 
           # This node is alive and supposed to be a member of our set
           Puppet.debug "Host #{host} is available for replset #{status['set']}"
+          member['_id'] = status['members'].find { |m| m['name'] == host }['_id']
           alive.push(member)
         elsif status.has_key?('info')
           Puppet.debug "Host #{host} is alive but unconfigured: #{status['info']}"
@@ -175,8 +176,9 @@ Puppet::Type.type(:mongodb_replset).provide(:mongo, :parent => Puppet::Provider:
   end
 
   def generate_replset_conf(members)
-      members = members.each_with_index.map do |member, id|
-        member['_id'] = id
+      id = members.map {|m| m['_id']}.select {|m| m}.max || -1
+      members = members.each.map do |member|
+        member['_id'] ||= id+=1
         if rs_arbiter == member['host']
           member['arbiterOnly'] = true
         end
