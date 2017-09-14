@@ -82,7 +82,14 @@ class mongodb (
   $ipv6             = undef,
   $bind_ip          = undef,
   $pidfilepath      = undef,
-  $pidfilemode      = undef
+  $pidfilemode      = undef,
+
+  # wiredTiger Options
+  $wiredtiger_engine_cachesizegb = undef, # Number
+  $wiredtiger_engine_journalcompressor = undef, # String
+  $wiredtiger_engine_directoryforindexes = undef, # Boolean
+  $wiredtiger_collection_blockcompressor = undef, # String
+  $wiredtiger_index_prefixcompression = undef # Boolean
 ) inherits mongodb::params {
 
   if $enable_10gen {
@@ -141,6 +148,11 @@ class mongodb (
     ipv6            => $ipv6,
     bind_ip         => $bind_ip,
     pidfilepath     => $pidfilepath,
+    wiredtiger_engine_cachesizegb => $wiredtiger_engine_cachesizegb,
+    wiredtiger_engine_journalcompressor => $wiredtiger_engine_journalcompressor,
+    wiredtiger_engine_directoryforindexes => $wiredtiger_engine_directoryforindexes,
+    wiredtiger_collection_blockcompressor => $wiredtiger_collection_blockcompressor,
+    wiredtiger_index_prefixcompression => $wiredtiger_index_prefixcompression,
   }
 
 }

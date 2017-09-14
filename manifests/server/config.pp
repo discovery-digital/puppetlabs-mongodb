@@ -69,6 +69,12 @@ class mongodb::server::config {
   $ssl_weak_cert    = $mongodb::server::ssl_weak_cert
   $storage_engine   = $mongodb::server::storage_engine
   $version          = $mongodb::server::version
+  $wiredtiger_engine_cachesizegb = $mongodb::server::wiredtiger_engine_cachesizegb
+  $wiredtiger_engine_journalcompressor = $mongodb::server::wiredtiger_engine_journalcompressor
+  $wiredtiger_engine_directoryforindexes = $mongodb::server::wiredtiger_engine_directoryforindexes
+  $wiredtiger_collection_blockcompressor = $mongodb::server::wiredtiger_collection_blockcompressor
+  $wiredtiger_index_prefixcompression = $mongodb::server::wiredtiger_index_prefixcompression
+
 
   File {
     owner => $user,

@@ -75,6 +75,11 @@ class mongodb::server (
   $ssl_weak_cert    = false,
   $restart          = $mongodb::params::restart,
   $storage_engine   = undef,
+  $wiredtiger_engine_cachesizegb = undef, # Number
+  $wiredtiger_engine_journalcompressor = undef, # String
+  $wiredtiger_engine_directoryforindexes = undef, # Boolean
+  $wiredtiger_collection_blockcompressor = undef, # String
+  $wiredtiger_index_prefixcompression = undef, # Boolean
 
   $create_admin     = $mongodb::params::create_admin,
   $admin_username   = $mongodb::params::admin_username,

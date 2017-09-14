@@ -70,6 +70,21 @@ storage.quota.maxFilesPerDB: <%= @quotafiles %>
 <% if @storage_engine_internal -%>
 storage.engine: <%= @storage_engine_internal %>
 <% end -%>
+<% if @wiredtiger_engine_cachesizegb -%>
+storage.wiredTiger.engineConfig.cacheSizeGB: <%= @wiredtiger_engine_cachesizegb %>
+<% end -%>
+<% if @wiredtiger_engine_journalcompressor -%>
+storage.wiredTiger.engineConfig.journalCompressor: <%= @wiredtiger_engine_journalcompressor %>
+<% end -%>
+<% if not @wiredtiger_engine_directoryforindexes.nil? -%>
+    storage.wiredTiger.engineConfig.directoryForIndexes: <%= @wiredtiger_engine_directoryforindexes -%>
+<% end -%>
+<% if @wiredtiger_collection_blockcompressor -%>
+storage.wiredTiger.collectionConfig.blockCompressor: <%= @wiredtiger_collection_blockcompressor  %>
+<% end -%>
+<% if not @wiredtiger_index_prefixcompression.nil? -%>
+    storage.wiredTiger.indexConfig.prefixCompression: <%= @wiredtiger_index_prefixcompression -%>
+<% end -%>
 
 
 #Security
